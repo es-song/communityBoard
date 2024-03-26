@@ -89,8 +89,8 @@ window.onload = function() {
 							<input type="checkbox" th:id="${'check_'+ pageVO.currPage}" th:name="${'check_'+ pageVO.currPage}">
 						</th>
 						<th>번호</th>
-						<th>아이디</th>
 						<th>제목</th>
+						<th>아이디</th>
 						<th>작성일</th>
 						
 						<!-- 조회수 추가 -->
@@ -104,7 +104,6 @@ window.onload = function() {
 							<input type="checkbox" th:id="${'check_'+ board.boardNum}" th:name="${'check_'+ board.boardNum}">
 						</td>
 						<td th:text="${st.count + (pageVO.currPage - 1) * 10}"></td>
-						<td th:utext="${board.boardNum}"></td>
 						<td>
 							<a th:href="@{'/board/view.do/'+ ${board.boardNum}}" th:utext="${board.boardSubject}"></a>
 							<!-- 글 내용 중 삽입 이미지 존재 여부 -->
@@ -117,6 +116,7 @@ window.onload = function() {
 								<i class="bi bi-paperclip"></i>
 							</span>
 						</td>
+						<td th:utext="${board.boardNum}"></td>
 						<td th:utext="${#dates.format(board.boardDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 						
 						<!-- 조회수 추가 -->

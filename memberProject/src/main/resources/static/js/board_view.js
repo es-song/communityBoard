@@ -144,11 +144,12 @@ function writeReply(originalBoardId, boardWriter) {
 	// replyWriteBtn.onclick = (e) =>  {
 	replyWriteBtn.addEventListener('click', function(e) { // 함수 내부에는 이와 같은 표현 권장	
 		
-		//로그인 미인증 시 로그인 페이지 이동
+		//로그인 미인증 시 페이지 이동 없음
 		if (boardWriter == 'anonymousUser'){
 		
 			alert("댓글 작성을 위해서 로그인이 필요합니다.");
-			location.href = "/memberProject/login";
+			//location.href = "/memberProject/login";
+			location.href = "/memberProject/board/replyWrite.do";
 		}
 			
 		let originalBoardId = e.target.id;
