@@ -86,6 +86,7 @@ public class SecurityConfig {
 						                .requestMatchers("/member/join.do", "/member/joinProc.do", "/member/joinProcRest.do").permitAll()
 						                .requestMatchers("/member/updateRoles/**", "/member/changeMemberState/**", 
 						                			     "/member/updateMemberByAdmin/**", "/member/deleteMemberByAdmin/**").authenticated()
+						                .requestMatchers("/board/replyWrite.do").permitAll()
 						                .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 						                .requestMatchers("/content1", "/content2").permitAll()	
 						                //
@@ -93,13 +94,15 @@ public class SecurityConfig {
 						                .requestMatchers("/board/view.do/**","/board/list.do","/board/searchList.do",
 						                				"/board/image", "/board/image/**",
 						                				"/board/getRepliesAll.do").permitAll()
+						                
 						                .requestMatchers("/board/write.do","/board/writeProc.do",
 							                			 "/board/update.do", "/board/updateProc.do",
-							                			 "/board/replyWrite.do", "/board/replyUpdate.do", 
+							                			 "/board/replyWrite.do",
+							                			  "/board/replyUpdate.do", 
 							                			 "/board/replyDelete.do",
 							                			 "/board/deleteProc.do").authenticated()
 						                .anyRequest().authenticated()); 
-                
+        
            http.formLogin(formLogin -> formLogin
 				                .loginPage("/login")
 				                .usernameParameter("username")

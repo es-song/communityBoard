@@ -33,6 +33,10 @@
 				<th colspan="1">게시글 정보</th>
 				<td colspan="11"><span th:text="${board}"></span><br></td>
 			</tr>
+			<tr th:if="${not #lists.isEmpty(listCount)}">
+				<th colspan="1">총 게시글 수</th>
+				<td colspan="11"><span th:text="${listCount}"></span><br></td>
+			</tr>
 		</table>
 	
 		<!-- 인증정보/회원정보 인자 확인  -->

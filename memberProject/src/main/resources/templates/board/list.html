@@ -78,10 +78,12 @@ window.onload = function() {
 
 			<!-- 인자 현황판 이전(move) :   -->
 			
-			<h2 class="d-flex justify-content-center m-5">
-				게시글 목록
+			<h2 class="d-flex justify-content-center m-5 bg-warning">
+				커뮤니티<br>
+				전체 [[${pageVO.listCount}]]개의 글
+				
 			</h2>
-	
+				
 			<table class="table mx-2 mx-auto" style="width:50vw">
 				<thead>
 					<tr>
@@ -90,7 +92,7 @@ window.onload = function() {
 						</th>
 						<th>번호</th>
 						<th>제목</th>
-						<th>아이디</th>
+						<th>작성자</th>
 						<th>작성일</th>
 						
 						<!-- 조회수 추가 -->
@@ -104,6 +106,8 @@ window.onload = function() {
 							<input type="checkbox" th:id="${'check_'+ board.boardNum}" th:name="${'check_'+ board.boardNum}">
 						</td>
 						<td th:text="${st.count + (pageVO.currPage - 1) * 10}"></td>
+						<!-- <td th:text="${st.listCount - (pageVO.currPage -pageVO.size ) * st.index}"></td> -->
+						
 						<td>
 							<a th:href="@{'/board/view.do/'+ ${board.boardNum}}" th:utext="${board.boardSubject}"></a>
 							<!-- 글 내용 중 삽입 이미지 존재 여부 -->
@@ -116,7 +120,7 @@ window.onload = function() {
 								<i class="bi bi-paperclip"></i>
 							</span>
 						</td>
-						<td th:utext="${board.boardNum}"></td>
+						<td th:utext="${board.boardWriter}"></td>
 						<td th:utext="${#dates.format(board.boardDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 						
 						<!-- 조회수 추가 -->

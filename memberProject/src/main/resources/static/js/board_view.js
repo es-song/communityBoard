@@ -144,12 +144,16 @@ function writeReply(originalBoardId, boardWriter) {
 	// replyWriteBtn.onclick = (e) =>  {
 	replyWriteBtn.addEventListener('click', function(e) { // 함수 내부에는 이와 같은 표현 권장	
 		
-		//로그인 미인증 시 페이지 이동 없음
+		//로그인 미인증 시 알림창 띄우고 페이지 이동 없음
 		if (boardWriter == 'anonymousUser'){
 		
 			alert("댓글 작성을 위해서 로그인이 필요합니다.");
 			//location.href = "/memberProject/login";
-			location.href = "/memberProject/board/replyWrite.do";
+			//location.href = "/memberProject/board/replyWrite.do";
+			//movePath ="redirect:/memberProject/board/replyWrite.do";
+			//history.back();//이전 페이지로 돌아가기
+			location.reload();
+
 		}
 			
 		let originalBoardId = e.target.id;
