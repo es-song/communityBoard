@@ -93,7 +93,7 @@ public class SecurityConfig {
 						                // 게시판 관련 링크 추가
 						                .requestMatchers("/board/view.do/**","/board/list.do","/board/searchList.do",
 						                				"/board/image", "/board/image/**",
-						                				"/board/getRepliesAll.do").permitAll()
+						                				"/board/getRepliesAll.do","/board/download/**").permitAll()
 						                
 						                .requestMatchers("/board/write.do","/board/writeProc.do",
 							                			 "/board/update.do", "/board/updateProc.do",

@@ -152,178 +152,176 @@ function writeReply(originalBoardId, boardWriter) {
 			//location.href = "/memberProject/board/replyWrite.do";
 			//movePath ="redirect:/memberProject/board/replyWrite.do";
 			//history.back();//이전 페이지로 돌아가기
-			location.reload();
-
-		}
+			//location.reload();
 			
-		let originalBoardId = e.target.id;
-		originalBoardId = originalBoardId.substring('reply_write_btn_'.length);
-		
-		console.log("댓글의 원글 아이디 : ", originalBoardId);
-		
-		let replyWriteForm = document.getElementById("reply_write_form");
-		
-		// 주의) 이 부분에서 매우 주의해야 되는 이유는  JS 파일을 분리하면서 '[[${#authentication.name}]]' thymeleaf 요소가
-		// 인식되지 않을 수 있습니다. 이럴 경우는 함수의 인자로 처리하여 코드 결손 현상을  패치해야 됩니다.
-		// 참고로 과거 JSP에서도 이러한 현상이 종종 있어서 같은 방식으로 인자 결손 현상을 패치하였습니다.
-		
-		// alert('[[${#authentication.name}]]');
-		// 참고) 위와 같이 조치해보면 로그인된 아이디가 분리된 JS 파일에서는 인식되지 않는 것을 확인할 수 있습니다. 
-		
-		// 현재 로그인 한 회원
-		// let boardWriter = '[[${#authentication.name}]]';
-		 			
-		console.log("댓글 작성자 : ", boardWriter);
-		
-		// 댓글 폼점검
-		// 댓글 한계량을 100자 이내로 한정합니다.
-		console.log("댓글 길이 : ", replyWriteForm.value.length);
-		
-		// 패쓰워드 폼점검
-		let boardPass = document.getElementById('board_pass_'+originalBoardId);
-		
-		if (boardPass.value.trim() == '') {
+		} else {
 			
-			alert("댓글 패쓰워드를 입력하십시오");
-			boardPass.focus();
+			let originalBoardId = e.target.id;
+			originalBoardId = originalBoardId.substring('reply_write_btn_'.length);
 			
-		}  else {
-		
- 			if (replyWriteForm.value.length > 100) {
- 				
- 				alert("댓글은 100자 이내로 작성하셔야 합니다.");
- 				
- 				// 댓글을 100자로 잘라서 다시 댓글값에 표시
- 				replyWriteForm.value = replyWriteForm.value.substring(0, 100);
- 				replyWriteForm.focus(); // 재입력 대기 				
- 			
- 			} else { 
-			 
- 				// 전송			  
- 				axios.post('/memberProject/board/replyWrite.do', 
- 					{
-						boardNum : originalBoardId,
-						boardContent : replyWriteForm.value,
-						boardWriter : boardWriter,
-						boardPass : boardPass.value,
- 					}
- 				)
- 				 .then(function(response) {
- 					
- 					let resData = response.data;
- 					console.log("response.data : ", resData);
-
- 					// 전체 댓글 현황 리턴 확인
- 					console.log("전체 댓글 수 : ", resData.length);
- 					
- 					let replyListPnl = document.getElementById("reply_list_pnl");
- 					let replyData = "";
- 					replyListPnl.innerHTML = ""; // 댓글 목록 초기화
- 					
- 					for (let reply of resData) {
- 						
- 						// 날짜 포매팅(형식화)
- 						let replyFormattedBoardDate = reply.boardDate;
- 					
- 						/* ------------------------------------------------------------------------------------------------------ */
- 									 
-						// 개별 게시글 동적 패널
-						replyData = `<div id="reply_${reply.boardNum}" class="border-bottom border-dark-1 bg-light w-100 ps-4">
-										
-										<div class="d-flex flex-row py-2">
-										
-											<!-- 사람 아이콘 -->
-											<div class="me-2">
+			console.log("댓글의 원글 아이디 : ", originalBoardId);
+			
+			let replyWriteForm = document.getElementById("reply_write_form");
+			
+			// 주의) 이 부분에서 매우 주의해야 되는 이유는  JS 파일을 분리하면서 '[[${#authentication.name}]]' thymeleaf 요소가
+			// 인식되지 않을 수 있습니다. 이럴 경우는 함수의 인자로 처리하여 코드 결손 현상을  패치해야 됩니다.
+			// 참고로 과거 JSP에서도 이러한 현상이 종종 있어서 같은 방식으로 인자 결손 현상을 패치하였습니다.
+			
+			// alert('[[${#authentication.name}]]');
+			// 참고) 위와 같이 조치해보면 로그인된 아이디가 분리된 JS 파일에서는 인식되지 않는 것을 확인할 수 있습니다. 
+			
+			// 현재 로그인 한 회원
+			// let boardWriter = '[[${#authentication.name}]]';
+			 			
+			console.log("댓글 작성자 : ", boardWriter);
+			
+			// 댓글 폼점검
+			// 댓글 한계량을 100자 이내로 한정합니다.
+			console.log("댓글 길이 : ", replyWriteForm.value.length);
+			
+			// 패쓰워드 폼점검
+			let boardPass = document.getElementById('board_pass_'+originalBoardId);
+			
+			if (boardPass.value.trim() == '') {
+				
+				alert("댓글 패쓰워드를 입력하십시오");
+				boardPass.focus();
+				
+			}  else {
+			
+	 			if (replyWriteForm.value.length > 100) {
+	 				
+	 				alert("댓글은 100자 이내로 작성하셔야 합니다.");
+	 				
+	 				// 댓글을 100자로 잘라서 다시 댓글값에 표시
+	 				replyWriteForm.value = replyWriteForm.value.substring(0, 100);
+	 				replyWriteForm.focus(); // 재입력 대기 				
+	 			
+	 			} else { 
+				 
+	 				// 전송			  
+	 				axios.post('/memberProject/board/replyWrite.do', 
+	 					{
+							boardNum : originalBoardId,
+							boardContent : replyWriteForm.value,
+							boardWriter : boardWriter,
+							boardPass : boardPass.value,
+	 					}
+	 				)
+	 				 .then(function(response) {
+	 					
+	 					let resData = response.data;
+	 					console.log("response.data : ", resData);
+	
+	 					// 전체 댓글 현황 리턴 확인
+	 					console.log("전체 댓글 수 : ", resData.length);
+	 					
+	 					let replyListPnl = document.getElementById("reply_list_pnl");
+	 					let replyData = "";
+	 					replyListPnl.innerHTML = ""; // 댓글 목록 초기화
+	 					
+	 					for (let reply of resData) {
+	 						
+	 						// 날짜 포매팅(형식화)
+	 						let replyFormattedBoardDate = reply.boardDate;
+	 					
+	 						/* ------------------------------------------------------------------------------------------------------ */
+	 									 
+							// 개별 게시글 동적 패널
+							replyData = `<div id="reply_${reply.boardNum}" class="border-bottom border-dark-1 bg-light w-100 ps-4">
 											
-												<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
+											<div class="d-flex flex-row py-2">
+											
+												<!-- 사람 아이콘 -->
+												<div class="me-2">
+												
+													<i class="bi bi-person-circle" style="font-size:3em; color:#ccc"></i>
+													
+												</div>
+												<!--// 사람 아이콘 -->
+												
+												<!-- 작성자 : bootstrap badge(뱃지) 적용 -->
+												<!-- 참고 : https://getbootstrap.com/docs/5.3/components/badge/#positioned -->
+												
+												<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->
+												<div id="reply_actual_writer_${reply.boardNum}" class="d-flex align-items-center ms-1 mt-1">
+												
+													<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
+													<button id="reply_writer_${reply.boardWriter}" type="button" class="btn btn-info position-relative">
+														
+														${reply.boardWriter}
+														
+													  	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+													    	작성자
+													    	<span class="visually-hidden">unread messages</span>
+													  	</span>
+													  	
+													</button>
+																							
+												</div>
+												<!--// 작성자 -->
 												
 											</div>
-											<!--// 사람 아이콘 -->
+										
+											<!-- 댓글 내용 -->										
+											<div class="my-1 d-flex flow">
 											
-											<!-- 작성자 : bootstrap badge(뱃지) 적용 -->
-											<!-- 참고 : https://getbootstrap.com/docs/5.3/components/badge/#positioned -->
-											
-											<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->
-											<div id="reply_actual_writer_${reply.boardNum}" class="d-flex align-items-center ms-1 mt-1">
-											
-												<!-- 실제 댓글 작성자 파악을 위해 id 등록 -->	
-												<button id="reply_writer_${reply.boardWriter}" type="button" class="btn btn-info position-relative">
-													
-													${reply.boardWriter}
-													
-												  	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-												    	작성자
-												    	<span class="visually-hidden">unread messages</span>
-												  	</span>
-												  	
-												</button>
-																						
+												<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
+												<div id="boardContent_${reply.boardNum}">
+													${reply.boardContent}
+												</div>
+												
 											</div>
-											<!--// 작성자 -->
+											<!--// 댓글 내용 -->
 											
-										</div>
+											<!-- ///////////////////////////////////////////////////////////////// -->
 									
-										<!-- 댓글 내용 -->										
-										<div class="my-1 d-flex flow">
-										
-											<!-- 댓글 제어의 원활하게 하기 위해 div에 ID 할당 -->
-											<div id="boardContent_${reply.boardNum}">
-												${reply.boardContent}
-											</div>
+											<!-- 댓글 작성일,  댓글 수정/삭제 메뉴 : 2024.3(이관) -->
+											<div class="my-1 d-flex flow row">
 											
-										</div>
-										<!--// 댓글 내용 -->
+												<div class="col-4 pt-1">
+													${replyFormattedBoardDate}
+												</div>
+												
+												<!-- 메뉴 추가(이동) : 댓글 수정/삭제 : 2024.3 -->
+												<div class="col-8 d-flex justify-content-end">
+												
+													<a href="#" id="reply_update_btn_${reply.boardNum}" class="btn btn-sm btn-outline-primary me-2 mb-1" 
+													   onClick="updateReply(${originalBoardId}, ${reply.boardNum}, '${boardWriter}')">수정</a>
 										
-										<!-- ///////////////////////////////////////////////////////////////// -->
-								
-										<!-- 댓글 작성일,  댓글 수정/삭제 메뉴 : 2024.3(이관) -->
-										<div class="my-1 d-flex flow row">
-										
-											<div class="col-4 pt-1">
-												${replyFormattedBoardDate}
-											</div>
-											
-											<!-- 메뉴 추가(이동) : 댓글 수정/삭제 : 2024.3 -->
-											<div class="col-8 d-flex justify-content-end">
-											
-												<a href="#" id="reply_update_btn_${reply.boardNum}" class="btn btn-sm btn-outline-primary me-2 mb-1" 
-												   onClick="updateReply(${originalBoardId}, ${reply.boardNum}, '${boardWriter}')">수정</a>
+													<a href="#" id="reply_delete_btn_${reply.boardNum}" class="btn btn-sm btn-outline-primary mb-1 me-3"
+													   onClick="deleteReply(${originalBoardId}, ${reply.boardNum}, '${boardWriter}')">삭제</a>
 									
-												<a href="#" id="reply_delete_btn_${reply.boardNum}" class="btn btn-sm btn-outline-primary mb-1 me-3"
-												   onClick="deleteReply(${originalBoardId}, ${reply.boardNum}, '${boardWriter}')">삭제</a>
-								
+												</div>
+												<!--// 메뉴 추가(이동) : 댓글 수정/삭제 : 2024.3 -->
+												
 											</div>
-											<!--// 메뉴 추가(이동) : 댓글 수정/삭제 : 2024.3 -->
+											<!--// 댓글 작성일 -->
 											
-										</div>
-										<!--// 댓글 작성일 -->
-										
-										<!-- ///////////////////////////////////////////////////////////////// -->
-										
-									</div>`;
- 												
-						/* ------------------------------------------------------------------------------------------------------ */
- 						
- 						
- 						replyListPnl.innerHTML += replyData;	
- 						
- 					} // for
- 					
- 				 })	 				 
- 				 .catch(function(err) {
- 					console.error("댓글 작성 중 서버 에러가 발견되었습니다.");
- 				 }); // axios			  
- 				
- 			} // if (replyWriteForm.value.length > 100)	
- 		
-		} // 패쓰워드 점검
+											<!-- ///////////////////////////////////////////////////////////////// -->
+											
+										</div>`;
+	 												
+							/* ------------------------------------------------------------------------------------------------------ */
+	 						
+	 						
+	 						replyListPnl.innerHTML += replyData;	
+	 						
+	 					} // for
+	 					
+	 				 })	 				 
+	 				 .catch(function(err) {
+	 					console.error("댓글 작성 중 서버 에러가 발견되었습니다.");
+	 				 }); // axios			  
+	 				
+	 			} // if (replyWriteForm.value.length > 100)	
+	 		
+			} // 패쓰워드 점검
 		
-	// } // replyWriteBtn.onclick = (e) => {
+		} //로그인 여부 점검
 		
 	}); // replyWriteBtn.addEventListener('click', function(e) { ...		
 	
- 	// } // for
-
 } //
 
 /* **************************************************************************************************** */

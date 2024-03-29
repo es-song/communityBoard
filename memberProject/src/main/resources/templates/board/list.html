@@ -18,6 +18,13 @@
 <!-- bootstrap icons :  -->
 <link rel="stylesheet" th:href="@{/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css}">
 
+<style>
+	.inner-div {
+	  width : 400px;
+	  height : 100px;
+	  /* background-color: red; */
+	}
+</style>
 <script>
 window.onload = function() {
 	
@@ -76,17 +83,20 @@ window.onload = function() {
 	
 		<div class="content_sect_pnl">
 
+		
 			<!-- 인자 현황판 이전(move) :   -->
 			
-			<h2 class="d-flex justify-content-center m-5 bg-warning">
-				커뮤니티<br>
-				전체 [[${pageVO.listCount}]]개의 글
-				
-			</h2>
+			<h4 class="d-flex justify-content-left m-5">
+				<div class='inner-div'> </div>
+				<div class="p-2" style="line-height: 1.5em">커뮤니티<br>
+					전체 <span style = "color : red;"><b>[[${pageVO.listCount}]]</b></span>개의 글
+				</div>	
+			</h4>
+			
 				
 			<table class="table mx-2 mx-auto" style="width:50vw">
 				<thead>
-					<tr>
+					<tr>	
 						<th>
 							<input type="checkbox" th:id="${'check_'+ pageVO.currPage}" th:name="${'check_'+ pageVO.currPage}">
 						</th>
@@ -105,7 +115,8 @@ window.onload = function() {
 						<td>
 							<input type="checkbox" th:id="${'check_'+ board.boardNum}" th:name="${'check_'+ board.boardNum}">
 						</td>
-						<td th:text="${st.count + (pageVO.currPage - 1) * 10}"></td>
+						<!-- <td th:text="${st.count + (pageVO.currPage - 1) * 10}"></td> -->
+						<td th:text="${board.boardNum}"></td>
 						<!-- <td th:text="${st.listCount - (pageVO.currPage -pageVO.size ) * st.index}"></td> -->
 						
 						<td>

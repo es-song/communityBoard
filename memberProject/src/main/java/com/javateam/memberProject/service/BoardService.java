@@ -41,7 +41,7 @@ public class BoardService {
 	@Transactional(readOnly = true)
 	public List<BoardVO> selectBoardsByPaging(int currPage, int limit) {
 				
-		Pageable pageable = PageRequest.of(currPage-1, limit, Sort.by(Direction.DESC, "boardNum"));
+		Pageable pageable = PageRequest.of(currPage-1, limit, Sort.by(Direction.DESC, "boardDate"));
 		return boardDAO.findAll(pageable).getContent();
 	} //
 
