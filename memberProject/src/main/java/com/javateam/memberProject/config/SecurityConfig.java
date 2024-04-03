@@ -93,14 +93,23 @@ public class SecurityConfig {
 						                // 게시판 관련 링크 추가
 						                .requestMatchers("/board/view.do/**","/board/list.do/**","/board/searchList.do",
 						                				"/board/image", "/board/image/**",
-						                				"/board/getRepliesAll.do","/board/download/**").permitAll()
+						                				"/board/getRepliesAll.do","/board/download/**",
+						                				"/qna_board/view.do/**","/qna_board/list.do/**","/qna_board/searchList.do",
+						                				"/qna_board/image", "/qna_board/image/**",
+						                				"/qna_board/getRepliesAll.do").permitAll()
 						                
 						                .requestMatchers("/board/write.do","/board/writeProc.do",
 							                			 "/board/update.do", "/board/updateProc.do",
 							                			 "/board/replyWrite.do",
 							                			  "/board/replyUpdate.do", 
 							                			 "/board/replyDelete.do",
-							                			 "/board/deleteProc.do"
+							                			 "/board/deleteProc.do",
+							                			 "/qna_board/write.do","/qna_board/writeProc.do",
+							                			 "/qna_board/update.do", "/qna_board/updateProc.do",
+							                			 "/qna_board/replyWrite.do",
+							                			 "/qna_board/replyUpdate.do", 
+							                			 "/qna_board/replyDelete.do",
+							                			 "/qna_board/deleteProc.do"
 							                			 ).authenticated()
 						                .anyRequest().authenticated()); 
         
