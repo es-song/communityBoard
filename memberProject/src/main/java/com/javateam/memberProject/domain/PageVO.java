@@ -26,6 +26,7 @@ public class PageVO {
 	/** 다음 페이지 */
 	private int nextPage;
 	
+	
 	public static int getMaxPage(int listCount, int limit) {
 		return (int)((double)listCount/limit+0.95); //0.95를 더해서 올림 처리
 	}

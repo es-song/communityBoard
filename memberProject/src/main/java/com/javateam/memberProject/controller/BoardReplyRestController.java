@@ -108,8 +108,8 @@ public class BoardReplyRestController {
 			// 원글에 따른 전체 댓글 현황 목록(리스트) 리턴(클라리언트에 전송)
 			replyList = boardService.selectReplysById(boardNum);				
 			
-			replyList.forEach(x-> { log.info("날짜 : "+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(x.getBoardDate())); });
-			//replyList.forEach(x-> { log.info("날짜 : {}", x.getBoardDate()); });
+			//replyList.forEach(x-> { log.info("날짜 : "+ new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(x.getBoardDate())); });
+			replyList.forEach(x-> { log.info("날짜 : {}", x.getBoardDate()); });
 			
 			// 댓글들이 있다면...
 			if (replyList.size() > 0) {

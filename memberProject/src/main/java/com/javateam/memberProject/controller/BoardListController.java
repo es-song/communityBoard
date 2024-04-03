@@ -32,11 +32,6 @@ public class BoardListController {
 		log.info("게시글 목록");
 		List<BoardVO> boardList = new ArrayList<>();
 		
-//		// 총 게시글 수
-//		int listCount = boardService.selectBoardsCount();
-//		
-//		boardList = boardService.selectBoardsByPaging(currPage, limit);
-		
 		// 총 게시글 수 (댓글들을 제외한)
 		int listCount = boardService.selectBoardsCountWithoutReplies();
 		// 댓글들 제외

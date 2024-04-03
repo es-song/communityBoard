@@ -91,7 +91,7 @@ public class SecurityConfig {
 						                .requestMatchers("/content1", "/content2").permitAll()	
 						                //
 						                // 게시판 관련 링크 추가
-						                .requestMatchers("/board/view.do/**","/board/list.do","/board/searchList.do",
+						                .requestMatchers("/board/view.do/**","/board/list.do/**","/board/searchList.do",
 						                				"/board/image", "/board/image/**",
 						                				"/board/getRepliesAll.do","/board/download/**").permitAll()
 						                
@@ -100,7 +100,8 @@ public class SecurityConfig {
 							                			 "/board/replyWrite.do",
 							                			  "/board/replyUpdate.do", 
 							                			 "/board/replyDelete.do",
-							                			 "/board/deleteProc.do").authenticated()
+							                			 "/board/deleteProc.do"
+							                			 ).authenticated()
 						                .anyRequest().authenticated()); 
         
            http.formLogin(formLogin -> formLogin
