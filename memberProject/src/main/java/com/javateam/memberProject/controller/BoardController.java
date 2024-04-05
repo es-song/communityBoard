@@ -56,12 +56,6 @@ public class BoardController {
 		return "/board/write";
 	} //
 	
-//	@GetMapping("/ReWrite.do")//답글쓰기
-//	public String reWrite(Model model) {
-//		
-//		model.addAttribute("boardDTO", new BoardDTO());
-//		return "/board/ReWrite";
-//	} //
 	
 	// DTO 대신 Map 형태의 인자 수신 
 	@PostMapping("/writeProc.do")
