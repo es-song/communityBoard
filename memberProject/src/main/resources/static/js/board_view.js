@@ -148,12 +148,7 @@ function writeReply(originalBoardId, boardWriter) {
 		if (boardWriter == 'anonymousUser'){
 		
 			alert("댓글 작성을 위해서 로그인이 필요합니다.");
-			//location.href = "/memberProject/login";
-			//location.href = "/memberProject/board/replyWrite.do";
-			//movePath ="redirect:/memberProject/board/replyWrite.do";
-			//history.back();//이전 페이지로 돌아가기
-			//location.reload();
-			
+						
 		} else {
 			
 			let originalBoardId = e.target.id;
